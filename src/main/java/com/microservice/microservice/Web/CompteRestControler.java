@@ -1,9 +1,10 @@
 package com.microservice.microservice.Web;
 
+import com.microservice.microservice.DTOs.CompteRequestDTO;
+import com.microservice.microservice.DTOs.CompteResponceDTO;
 import com.microservice.microservice.Respositorys.CompteRespository;
+import com.microservice.microservice.Services.CompteService;
 import com.microservice.microservice.entites.Compte;
-import jakarta.persistence.SqlResultSetMapping;
-import jakarta.websocket.server.PathParam;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +14,12 @@ import java.util.List;
 public class CompteRestControler {
 
     private CompteRespository compteRespository;
+    private CompteService compteService;
 
 
-    public CompteRestControler(CompteRespository compteRespository) {
+    public CompteRestControler(CompteRespository compteRespository, CompteService compteService) {
         this.compteRespository = compteRespository;
+        this.compteService = compteService;
     }
 
     @GetMapping("/accounts")
@@ -31,8 +34,8 @@ public class CompteRestControler {
     }
 
     @PostMapping("/accounts")
-    public Compte save(@RequestBody Compte account) {
-        return compteRespository.save(account);
+    public CompteResponceDTO save(@RequestBody CompteRequestDTO account) {
+        return compteService.addCompte(account);
     }
 
     @PutMapping("/accounts/{id}")
