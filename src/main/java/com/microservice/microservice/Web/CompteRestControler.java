@@ -5,6 +5,7 @@ import com.microservice.microservice.DTOs.CompteResponceDTO;
 import com.microservice.microservice.Respositorys.CompteRespository;
 import com.microservice.microservice.Services.CompteService;
 import com.microservice.microservice.entites.Compte;
+import com.microservice.microservice.mappers.CompteMapper;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,11 +16,13 @@ public class CompteRestControler {
 
     private CompteRespository compteRespository;
     private CompteService compteService;
+    private CompteMapper compteMapper;
 
 
-    public CompteRestControler(CompteRespository compteRespository, CompteService compteService) {
+    public CompteRestControler(CompteRespository compteRespository, CompteService compteService, CompteMapper compteMapper) {
         this.compteRespository = compteRespository;
         this.compteService = compteService;
+        this.compteMapper = compteMapper;
     }
 
     @GetMapping("/accounts")
