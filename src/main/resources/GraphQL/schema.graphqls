@@ -1,0 +1,21 @@
+type Query {
+    accounts: [Compte],
+    accountById(id:String):Compte,
+}
+
+type Mutation{
+    addAccount(compte:CompteDTO):Compte
+}
+type Compte {
+    id:String,
+    createdAt:Float,
+    balance:Float,
+    currency:String,
+    type:String
+}
+
+input CompteDTO{
+    balance:Float,
+    currency:String,
+    type:String
+}
